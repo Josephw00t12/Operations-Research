@@ -1,0 +1,68 @@
+---
+title: "Optimization Packages Testing Cases of Simplex Problems"
+author: "Espiritu"
+date: "2025-02-20"
+output: html_document
+---
+In R:
+lpSolve – A widely used package for linear and integer programming.
+Functions: lp(), lp.assign()
+Supports: Linear, Integer, and Mixed-Integer Programming
+
+ROI (R Optimization Infrastructure) – A flexible framework for optimization problems.
+Functions: ROI_solve()
+Supports: LP, MILP, Quadratic Programming (QP)
+
+ompr – A modern, modeling-based optimization package.
+Functions: MIPModel(), add_constraint()
+Supports: LP and MILP
+
+### Regular Minimize & Maximize Simplex (lpSolve,ROI,ompr)
+``` {r echo=TRUE}
+## Min
+library(lpSolve)
+
+matData <- c(
+  3, 1,  0, 0, 1, 0,
+  4, 3, -1, 0, 0, 1,
+  1, 2,  0, 1, 0, 0
+)
+
+## Objective Functions
+obj <- c(1,1)
+## Constraints / LHS
+cons <- matrix(data = matData, nrow = 3,byrow = TRUE)
+## Directions
+directions <- c("=","=","=")
+## RHS
+rhs <- c(3,6,4)
+
+sol <- lp(direction = "min", objective.in = obj, const.mat = cons, const.dir = directions, const.rhs = rhs)
+
+print(sol)
+print(sol$sol)
+
+matData2 <- c(
+   6, 4, 1, 0, 0, 0,
+   1, 2, 0, 1, 0, 0,
+  -1, 2, 0, 0, 1, 0,
+   0, 1, 0, 0, 0, 1
+)
+
+## Objective Functions
+obj2 <- c(5,4,0,0,0,0)
+## Constraints / LHS
+cons2 <- matrix(data = matData2, nrow = 4,byrow = TRUE)
+## Directions
+directions2 <- c("=","=","=","=")
+## RHS
+rhs2 <- c(24,6,1,2)
+
+sol2 <- lp(direction = "max", objective.in = obj2, const.mat = cons2, const.dir = directions2, const.rhs = rhs2)
+
+print(sol2)
+print(sol2$sol)
+print(sol2$iter)
+
+```
+

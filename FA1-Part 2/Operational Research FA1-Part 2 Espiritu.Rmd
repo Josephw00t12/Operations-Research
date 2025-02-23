@@ -1,0 +1,99 @@
+---
+title: "FA1 - Part 2"
+author: "Espiritu, Joseph Raphael M."
+date: "2025-02-22"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+\section{Linear Programming Problem}
+The given linear programming problem (LP) is:
+
+\[
+\text{Maximize } z = 16x_1 + 15x_2
+\]
+
+Subject to:
+
+\[
+\begin{aligned}
+    40x_1 + 31x_2 &\leq 124 \\
+    -x_1 + x_2 &\leq 1 \\
+    x_1 &\leq 3 \\
+    x_1, x_2 &\geq 0
+\end{aligned}
+\]
+
+\section{Step 1: Convert to Standard Form}
+To apply the Simplex method, we introduce slack variables \(s_1, s_2, s_3\):
+
+\[
+\begin{aligned}
+    40x_1 + 31x_2 + s_1 &= 124 \\
+    -x_1 + x_2 + s_2 &= 1 \\
+    x_1 + s_3 &= 3
+\end{aligned}
+\]
+
+Now, rewrite the objective function:
+
+\[
+z - 16x_1 - 15x_2 = 0
+\]
+
+\section{Step 2: Initial Simplex Tableau}
+\[
+\begin{array}{c|ccccc|c}
+    \text{BV} & x_1 & x_2 & s_1 & s_2 & s_3 & RHS \\
+    \hline
+    s_1 & 40 & 31 & 1 & 0 & 0 & 124 \\
+    s_2 & -1 & 1 & 0 & 1 & 0 & 1 \\
+    s_3 & 1 & 0 & 0 & 0 & 1 & 3 \\
+    \hline
+    z & -16 & -15 & 0 & 0 & 0 & 0
+\end{array}
+\]
+
+\section{Step 3: Solve Using Simplex Method}
+**(a) Entering variable selection: most negative \( z \)-row coefficient**  
+The most negative coefficient is **\( -16 \) (corresponding to \( x_1 \))**, so \( x_1 \) enters the basis.
+
+To determine the **leaving variable**, compute the ratio test:
+
+\[
+\frac{124}{40} = 3.1, \quad \frac{1}{-1} \text{ (not valid)}, \quad \frac{3}{1} = 3
+\]
+
+Since \( \frac{3}{1} = 3 \) is the smallest, **\( s_3 \) leaves the basis**.
+
+Perform the **pivot operation** and update the tableau. The next iterations should be computed step by step.
+
+\section{Step 4: Compare Iterations}
+(b) If we choose the least negative \( z \)-row coefficient, the process may take **more iterations** before reaching optimality.
+
+\section{Step 5: Effect of Minimization}
+(d) If we minimize \( z \), the direction of optimization changes, requiring the **dual simplex method** if needed.
+
+\section{Step 3: Solve Using Simplex Method}
+**(a) Entering variable selection: most negative \( z \)-row coefficient**  
+The most negative coefficient is **\( -16 \) (corresponding to \( x_1 \))**, so \( x_1 \) enters the basis.
+
+To determine the **leaving variable**, compute the ratio test:
+
+\[
+\frac{124}{40} = 3.1, \quad \frac{1}{-1} \text{ (not valid)}, \quad \frac{3}{1} = 3
+\]
+
+Since \( \frac{3}{1} = 3 \) is the smallest, **\( s_3 \) leaves the basis**.
+
+Perform the **pivot operation** and update the tableau. The next iterations should be computed step by step.
+
+\section{Step 4: Compare Iterations}
+(b) If we choose the least negative \( z \)-row coefficient, the process may take **more iterations** before reaching optimality.
+
+\section{Step 5: Effect of Minimization}
+(d) If we minimize \( z \), the direction of optimization changes, requiring the **dual simplex method** if needed.
+
+
+
